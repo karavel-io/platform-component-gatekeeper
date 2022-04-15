@@ -1,6 +1,6 @@
 apiVersion: v2
-name: example
-description: Example component for Karavel
+name: gatekeeper
+description: Gatekeeper component for Karavel
 type: application
 version: 0.1.0-SNAPSHOT
 appVersion: 1.0.0
@@ -8,10 +8,10 @@ maintainers:
   - name: JaneDoe
     email: jane.doe@karavel.io
 
-home: https://example.com
+home: https://open-policy-agent.github.io/gatekeeper/website/docs/
 sources:
-  - https://github.com/example/example
-  - https://github.com/projectkaravel/platform-component-example
+  - https://github.com/open-policy-agent/gatekeeper
+  - https://github.com/projectkaravel/platform-component-gatekeeper
 
 annotations:
   karavel.io/dependencies: cert-manager, external-secrets

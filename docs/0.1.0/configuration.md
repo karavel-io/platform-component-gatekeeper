@@ -1,8 +1,8 @@
 # Configuration
 
 ```hcl
-component "example" {
-  namespace = "example"
+component "gatekeeper" {
+  namespace = "gatekeeper"
 
   # Params default values
 

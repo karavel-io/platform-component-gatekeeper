@@ -1,4 +1,4 @@
-example:
+gatekeeper:
   image: nginx
   tag: latest
 prometheus:
