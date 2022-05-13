@@ -1,6 +1,9 @@
 name: Vendor Gatekeeper image
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to copy'
   push:
     paths:
       - 'chart/Chart.yaml'
@@ -11,8 +14,21 @@ jobs:
   vendor-image:
     runs-on: ubuntu-latest
     steps:
+      # If no tag is specified, clone the repo and get the "appVersion" from Chart.yaml
+      - uses: actions/checkout@v1
+        if: github.event.inputs.tag == ''
+
+      - name: Read container version from Chart.yaml
+        if: github.event.inputs.tag == ''
+        id: yaml-data
+        uses: KJ002/read-yaml@1.6
+        with:
+          file: './chart/Chart.yaml'
+          key-path: '["appVersion"]'
+
+      # Vendor the image, use either provided tag, fetched tag, or "dev" if everything else fails
       - uses: Neosperience/vendorito@v0.1.1
         with:
-          source: openpolicyagent/gatekeeper-crds
-          target: quay.io/karavel/opa-gatekeeper-crds
+          source: openpolicyagent/gatekeeper-crds:${{ github.event.inputs.tag || steps.yaml-data.outputs.data || "dev" }}
+          target: quay.io/karavel/opa-gatekeeper-crds:${{ github.event.inputs.tag || steps.yaml-data.outputs.data || "dev" }}
           credentials: ${{ secrets.QUAYCREDENTIALS }}
