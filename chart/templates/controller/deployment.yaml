@@ -8,7 +8,7 @@ metadata:
     control-plane: controller-manager
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
-    {{- include "controller.labels" . | nindent 4 }}
+    {{- include "gatekeeper.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
       control-plane: controller-manager
       gatekeeper.sh/operation: webhook
       gatekeeper.sh/system: "yes"
-      {{- include "controller.selectorLabels" . | nindent 6 }}
+      {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
