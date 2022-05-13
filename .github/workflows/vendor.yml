@@ -1,0 +1,18 @@
+name: Vendor Gatekeeper image
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'chart/Chart.yaml'
+  pull_request:
+    paths:
+      - 'chart/Chart.yaml'
+jobs:
+  vendor-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Neosperience/vendorito@v0.1.1
+        with:
+          source: openpolicyagent/gatekeeper-crds
+          target: quay.io/karavel/opa-gatekeeper-crds
+          credentials: ${{ secrets.QUAYCREDENTIALS }}

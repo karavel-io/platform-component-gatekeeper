@@ -1,4 +1,5 @@
 controller:
+  tag:
 
 prometheus:
   enable: false
