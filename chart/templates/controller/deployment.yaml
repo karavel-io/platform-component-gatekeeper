@@ -1,17 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "gatekeeper.name" . }}
+  name: {{ include "gatekeeper.name" . }}-controller
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
-    {{- include "gatekeeper.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
+    control-plane: controller-manager
+    gatekeeper.sh/operation: webhook
+    gatekeeper.sh/system: "yes"
+    {{- include "controller.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
-      {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
+      control-plane: controller-manager
+      gatekeeper.sh/operation: webhook
+      gatekeeper.sh/system: "yes"
+      {{- include "controller.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
@@ -20,12 +26,17 @@ spec:
     spec:
       serviceAccountName: {{ include "gatekeeper.name" . }}
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - all
+        readOnlyRootFilesystem: true
+        runAsGroup: 999
         runAsNonRoot: true
+        runAsUser: 1000
       containers:
         - name: gatekeeper
-          image: "{{ .Values.gatekeeper.image }}:{{ .Values.gatekeeper.tag | default .Chart.AppVersion }}"
+          image: ":{{ .Values.controller.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -3,15 +3,15 @@ name: gatekeeper
 description: Gatekeeper component for Karavel
 type: application
 version: 0.1.0-SNAPSHOT
-appVersion: 1.0.0
+appVersion: 3.8.1
 maintainers:
-  - name: JaneDoe
-    email: jane.doe@karavel.io
+  - name: Hamcha
+    email: alessandro.gatti@mikamai.com
 
 home: https://open-policy-agent.github.io/gatekeeper/website/docs/
 sources:
   - https://github.com/open-policy-agent/gatekeeper
-  - https://github.com/projectkaravel/platform-component-gatekeeper
+  - https://github.com/karavel-io/platform-component-gatekeeper
 
 annotations:
   karavel.io/dependencies: cert-manager, external-secrets
