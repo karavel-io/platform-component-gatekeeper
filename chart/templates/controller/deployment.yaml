@@ -13,15 +13,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+      app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
       control-plane: controller-manager
       gatekeeper.sh/operation: webhook
       gatekeeper.sh/system: "yes"
-      {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
+  {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+        app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
         {{- include "gatekeeper.labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "gatekeeper.name" . }}

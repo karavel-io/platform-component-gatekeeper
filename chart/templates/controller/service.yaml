@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "gatekeeper.name" . }}
+  name: {{ include "gatekeeper.name" . }}-controller
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
     {{- include "gatekeeper.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
@@ -14,5 +14,5 @@ spec:
       protocol: TCP
       name: https
   selector:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
     {{- include "gatekeeper.selectorLabels" . | nindent 4 }}
