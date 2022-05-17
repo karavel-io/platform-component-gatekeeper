@@ -6,8 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller-manager
-    {{ include "gatekeeper.labels" . | nindent 4 }}
     app.kubernetes.io/component: controller-manager
+    {{ include "gatekeeper.labels" . | nindent 4 }}
 spec:
   endpoints:
     - path: /metrics
@@ -15,6 +15,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller-manager
-      {{ include "gatekeeper.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: controller-manager
+      {{ include "gatekeeper.selectorLabels" . | nindent 6 }}
 {{- end }}

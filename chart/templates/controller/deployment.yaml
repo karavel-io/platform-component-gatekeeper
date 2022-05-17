@@ -17,7 +17,7 @@ spec:
       control-plane: controller-manager
       gatekeeper.sh/operation: webhook
       gatekeeper.sh/system: "yes"
-  {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
+      {{- include "gatekeeper.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:

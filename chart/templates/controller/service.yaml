@@ -5,6 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
+    control-plane: controller-manager
+    gatekeeper.sh/operation: webhook
+    gatekeeper.sh/system: "yes"
     {{- include "gatekeeper.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
@@ -15,4 +18,7 @@ spec:
       name: https
   selector:
     app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
+    control-plane: controller-manager
+    gatekeeper.sh/operation: webhook
+    gatekeeper.sh/system: "yes"
     {{- include "gatekeeper.selectorLabels" . | nindent 4 }}
