@@ -17,7 +17,7 @@ metadata:
   name: {{ include "gatekeeper.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
     {{- include "gatekeeper.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -34,5 +34,5 @@ metadata:
   name: {{ include "gatekeeper.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
     {{- include "gatekeeper.labels" . | nindent 4 }}
