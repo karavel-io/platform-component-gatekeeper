@@ -35,6 +35,16 @@ spec:
         - name: gatekeeper
           image: "quay.io/karavel/opa-gatekeeper-crds:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
+          command:
+            - /manager
+          args:
+            - --port=8443
+            - --logtostderr
+            - --emit-admission-events=false
+            - --log-level=INFO
+            - --exempt-namespace={{ .Release.Namespace }}
+            - --operation=webhook
+            - --disable-cert-rotation
           ports:
             - name: http
               containerPort: 80
