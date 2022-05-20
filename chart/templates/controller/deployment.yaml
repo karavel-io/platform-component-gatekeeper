@@ -33,7 +33,7 @@ spec:
         runAsUser: 1000
       containers:
         - name: gatekeeper
-          image: "quay.io/karavel/opa-gatekeeper-crds:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
+          image: "quay.io/karavel/opa-gatekeeper:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
           command:
             - /manager

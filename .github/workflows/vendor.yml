@@ -29,6 +29,12 @@ jobs:
       # Vendor the image, use either provided tag, fetched tag, or "dev" if everything else fails
       - uses: Neosperience/vendorito@v0.1.1
         with:
+          source: openpolicyagent/gatekeeper:v${{ github.event.inputs.tag || steps.yaml-data.outputs.data || 'dev' }}
+          target: quay.io/karavel/opa-gatekeeper:v${{ github.event.inputs.tag || steps.yaml-data.outputs.data || 'dev' }}
+          credentials: ${{ secrets.QUAYCREDENTIALS }}
+      # Vendor the image CRD, use either provided tag, fetched tag, or "dev" if everything else fails
+      - uses: Neosperience/vendorito@v0.1.1
+        with:
           source: openpolicyagent/gatekeeper-crds:v${{ github.event.inputs.tag || steps.yaml-data.outputs.data || 'dev' }}
           target: quay.io/karavel/opa-gatekeeper-crds:v${{ github.event.inputs.tag || steps.yaml-data.outputs.data || 'dev' }}
           credentials: ${{ secrets.QUAYCREDENTIALS }}
