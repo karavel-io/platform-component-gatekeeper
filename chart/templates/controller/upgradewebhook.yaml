@@ -76,7 +76,7 @@ spec:
       containers:
       - name: crds-upgrade
         image: "quay.io/karavel/opa-gatekeeper-crds:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
-        imagePullPolicy: '{{ .Values.image.pullPolicy }}'
+        imagePullPolicy: IfNotPresent
         args:
         - apply
         - -f
