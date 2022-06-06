@@ -39,6 +39,8 @@ spec:
             - /manager
           args:
             - --port=8443
+            - --health-addr=:9090
+            - --prometheus-port=8888
             - --logtostderr
             - --emit-admission-events=false
             - --log-level=INFO
