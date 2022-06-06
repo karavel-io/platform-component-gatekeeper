@@ -46,8 +46,11 @@ spec:
             - --operation=webhook
             - --disable-cert-rotation
           ports:
-            - name: http
+            - name: webhook-server
               containerPort: 8443
+              protocol: TCP
+            - containerPort: 8888
+              name: metrics
               protocol: TCP
             - containerPort: 9090
               name: healthz
