@@ -73,10 +73,6 @@ spec:
     spec:
       serviceAccountName: {{ include "gatekeeper.name" . }}-admin-upgrade-crds
       restartPolicy: Never
-      {{- if .Values.image.pullSecrets }}
-      imagePullSecrets:
-        {{- toYaml .Values.image.pullSecrets | nindent 8 }}
-      {{- end }}
       containers:
       - name: crds-upgrade
         image: "quay.io/karavel/opa-gatekeeper-crds:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
