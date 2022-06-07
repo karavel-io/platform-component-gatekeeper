@@ -47,7 +47,7 @@ roleRef:
   name: {{ include "gatekeeper.name" . }}-manager-role
 subjects:
   - kind: ServiceAccount
-    name: {{ include "gatekeeper.name" . }}-admin
+    name: {{ include "gatekeeper.name" . }}
     namespace: {{ .Release.Namespace }}
 ---
 apiVersion: v1
@@ -238,5 +238,5 @@ roleRef:
   name: {{ include "gatekeeper.name" . }}-manager-role
 subjects:
   - kind: ServiceAccount
-    name: {{ include "gatekeeper.name" . }}-admin
+    name: {{ include "gatekeeper.name" . }}
     namespace: {{ .Release.Namespace }}
