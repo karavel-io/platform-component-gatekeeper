@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "gatekeeper.name" . }}-controller
+  name: {{ include "gatekeeper.name" . }}-webhook
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-controller
+    app.kubernetes.io/name: {{ include "gatekeeper.name" . }}-webhook
     {{- include "gatekeeper.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
