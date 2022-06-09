@@ -68,11 +68,11 @@ spec:
               port: healthz
           resources:
             limits:
-              cpu: 100m
-              memory: 50Mi
+              cpu: 1000m
+              memory: 512Mi
             requests:
               cpu: 100m
-              memory: 20Mi
+              memory: 256Mi
           volumeMounts:
             - mountPath: /certs
               name: cert
