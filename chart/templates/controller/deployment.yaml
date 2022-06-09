@@ -23,11 +23,6 @@ spec:
     spec:
       serviceAccountName: {{ include "gatekeeper.name" . }}
       securityContext:
-        allowPrivilegeEscalation: false
-        capabilities:
-          drop:
-          - all
-        readOnlyRootFilesystem: true
         runAsGroup: 999
         runAsNonRoot: true
         runAsUser: 1000
@@ -35,6 +30,12 @@ spec:
         - name: gatekeeper
           image: "quay.io/karavel/opa-gatekeeper:v{{ .Values.controller.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+            readOnlyRootFilesystem: true
           command:
             - /manager
           args:
@@ -72,3 +73,12 @@ spec:
             requests:
               cpu: 100m
               memory: 20Mi
+          volumeMounts:
+            - mountPath: /certs
+              name: cert
+              readOnly: true
+      volumes:
+        - name: cert
+          secret:
+            defaultMode: 420
+            secretName: {{ include "gatekeeper.name" . }}-webhook-cert
