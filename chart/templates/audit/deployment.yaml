@@ -27,7 +27,7 @@ spec:
         container.seccomp.security.alpha.kubernetes.io/manager: runtime/default
     spec:
       automountServiceAccountToken: true
-      serviceAccountName: gatekeeper-admin
+      serviceAccountName: {{ include "gatekeeper.name" . }}
       terminationGracePeriodSeconds: 60
       priorityClassName: system-cluster-critical
       containers:
