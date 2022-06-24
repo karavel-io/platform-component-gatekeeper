@@ -1,3 +1,5 @@
+namespace: gatekeeper
+
 controller:
   tag:
 
