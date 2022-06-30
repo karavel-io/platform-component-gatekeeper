@@ -22,6 +22,6 @@ markdown_extensions:
       permalink: true
 nav:
   - Overview: index.md
-  - 0.1.0:
-    - 0.1.0/configuration.md
+  - 0.1:
+    - 0.1/configuration.md
   - Back to platform docs: https://docs.karavel.io/

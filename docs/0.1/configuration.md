@@ -2,7 +2,7 @@
 
 ```hcl
 component "gatekeeper" {
-  namespace = "gatekeeper"
+  namespace = "gatekeeper" # optional
 
   # Params default values
 
